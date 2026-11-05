@@ -8,6 +8,10 @@ const widgetAncestors = (process.env.WIDGET_ALLOWED_ORIGINS ?? "")
   .join(" ");
 
 const nextConfig: NextConfig = {
+  // 첫 화면은 인박스. 페이지에서 redirect() 하면 개발 서버가 요청마다 instant 검증 오류를 남겨서 설정으로 둔다
+  async redirects() {
+    return [{ source: "/", destination: "/inbox", permanent: false }];
+  },
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {

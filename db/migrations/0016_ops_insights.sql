@@ -86,7 +86,7 @@ create table improvement_attempts (
   branch         text,
   commit         text,
   checks         jsonb,                       -- npm run check · QA · 재현 결과
-  review         jsonb,                       -- Codex 검토 결과
+  review         jsonb,                       -- 코드 검토 결과
   post_deploy    jsonb,                       -- 배포 후 효과 확인 결과
   failure_reason text
 );

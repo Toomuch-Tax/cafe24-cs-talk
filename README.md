@@ -5,6 +5,14 @@ Vercel + Postgres(Supabase) 위에서 돌아가고, 위젯을 열기 전에는 �
 
 > An open-source customer-support widget, AI answers and agent inbox for Cafe24 (Korean e-commerce platform) shops. Next.js + Postgres. UI and docs are in Korean.
 
+<table>
+<tr>
+<td width="30%"><img src="docs/images/widget.png" alt="쇼핑몰 위젯: AI 질문, 주문·배송 조회, 재입고·사이즈 문의"></td>
+<td><img src="docs/images/inbox.png" alt="운영 콘솔 인박스: 문의 목록, 대화, 고객 정보"><br><img src="docs/images/policies.png" alt="AI 응답 정책: 주제별 문서, 자동 응답/초안 선택, 버전 기록, 테스트"></td>
+</tr>
+<tr><td align="center">쇼핑몰 위젯</td><td align="center">인박스 · AI 응답 정책</td></tr>
+</table>
+
 ## 무엇을 하나요
 
 | 고객 (쇼핑몰 위젯) | 운영자 (콘솔) |
@@ -110,7 +118,7 @@ AGENT_PASSWORD='…' node --env-file=.env.local scripts/create-agent.mjs you@exa
 - 고객 화면 새 기능은 `src/lib/features.ts` 에 `test` 로 먼저 넣습니다.
 - 커밋 전 `npm run check`.
 
-보안 문제는 공개 이슈 대신 저장소의 **Security → Report a vulnerability** 로 알려 주세요.
+보안 문제는 공개 이슈 대신 [SECURITY.md](SECURITY.md) 의 방법으로 알려 주세요.
 
 ## 라이선스
 

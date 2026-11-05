@@ -1,0 +1,15 @@
+name: 기능 제안
+description: 이런 게 있으면 좋겠어요
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 어떤 불편이 있나요
+      description: 지금 어떻게 하고 있고, 무엇이 번거로운지
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: 생각한 해결 방법

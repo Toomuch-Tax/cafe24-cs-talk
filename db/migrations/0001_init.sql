@@ -167,9 +167,9 @@ create table rate_limits (
 );
 
 insert into settings (key, value) values
-  ('business_hours', '{"timezone":"Asia/Seoul","days":[1,2,3,4,5],"start":"10:00","end":"17:00","lunch":{"start":"12:30","end":"13:30"}}'),
+  ('business_hours', '{"timezone":"Asia/Seoul","days":[1,2,3,4,5],"start":"10:00","end":"18:00","lunch":{"start":"12:00","end":"13:00"}}'),
   ('greeting', '"안녕하세요, 고객센터입니다. 무엇을 도와드릴까요?"'),
-  ('away_message', '"지금은 상담 운영시간이 아니에요. 남겨주신 문의는 운영시간(평일 10:00–17:00)에 순서대로 답변드릴게요."');
+  ('away_message', '"지금은 상담 운영시간이 아니에요. 남겨주신 문의는 운영시간(평일 10:00–18:00)에 순서대로 답변드릴게요."');
 
 insert into quick_replies (shortcut, title, body) values
   ('배송', '배송 기간 안내', '결제 완료 후 영업일 기준 1–3일 내 출고되며, 출고 후 1–2일 내 받아보실 수 있어요.'),

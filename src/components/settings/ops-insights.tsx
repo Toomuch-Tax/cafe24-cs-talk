@@ -318,7 +318,7 @@ function Attempts({ attempts }: { attempts: Attempt[] }) {
             </p>
             {a.hypothesis && <p>원인 판단: {a.hypothesis}</p>}
             {a.change_summary && <p>변경: {a.change_summary}</p>}
-            {a.review != null && <p className="text-ink-3">Codex 검토: {summarize(a.review)}</p>}
+            {a.review != null && <p className="text-ink-3">검토: {summarize(a.review)}</p>}
             {a.checks != null && <p className="text-ink-3">검증: {summarize(a.checks)}</p>}
             {a.failure_reason && <p className="text-late-text">실패 이유: {a.failure_reason}</p>}
             {a.post_deploy && (

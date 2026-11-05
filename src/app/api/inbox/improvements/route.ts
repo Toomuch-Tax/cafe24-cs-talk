@@ -3,7 +3,7 @@ import { requireAdmin } from "@/lib/auth";
 import { sql } from "@/lib/db";
 import { handle, json } from "@/lib/http";
 
-// 설정 → 운영 개선 → 개선 후보 (관리자 전용). 후보마다 시도 이력(원인 판단·변경·검증·Codex 검토·배포 후 결과)을 붙인다.
+// 설정 → 운영 개선 → 개선 후보 (관리자 전용). 후보마다 시도 이력(원인 판단·변경·검증·코드 검토·배포 후 결과)을 붙인다.
 export const GET = handle(async (request: NextRequest) => {
   await requireAdmin(request);
   const items = await sql`
