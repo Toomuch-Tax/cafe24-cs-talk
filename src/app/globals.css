@@ -1,0 +1,469 @@
+/* Hallmark · genre: atmospheric · macrostructure: Workbench (app) · theme: custom "Ink & Signal · L4 Spatial"
+ * W1 Frost: paper oklch(95.5% 0.01 255) · glass oklch(100% 0 0 / .62) · signal oklch(54% 0.2 266) cobalt-violet
+ * fonts: Pretendard Variable (KR) + Geist (Latin/numerals) + Geist Mono (meta)
+ */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-latin: var(--font-geist), "Pretendard Variable", Pretendard, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-heading: var(--font-sans);
+
+  /* CS-Talk 전용 토큰 — 위젯과 인박스가 공통으로 쓴다 */
+  --color-panel: var(--cs-panel);
+  --color-panel-2: var(--cs-panel-2);
+  --color-panel-3: var(--cs-panel-3);
+  --color-raised: var(--cs-raised);
+  --color-ink-3: var(--cs-ink-3);
+  --color-signal: var(--cs-signal);
+  --color-signal-foreground: var(--cs-signal-foreground);
+  --color-signal-soft: var(--cs-signal-soft);
+  --color-signal-text: var(--cs-signal-text);
+  --color-warn: var(--cs-warn);
+  --color-warn-text: var(--cs-warn-text);
+  --color-late: var(--cs-late);
+  --color-late-text: var(--cs-late-text);
+  --color-ok: var(--cs-ok);
+  --color-ok-text: var(--cs-ok-text);
+  --color-kakao: var(--cs-kakao);
+  --color-kakao-foreground: var(--cs-kakao-foreground);
+  --color-bubble-customer: var(--cs-bubble-customer);
+  --color-bubble-customer-foreground: var(--cs-bubble-customer-foreground);
+  --color-bubble-agent: var(--cs-bubble-agent);
+  --color-bubble-agent-foreground: var(--cs-bubble-agent-foreground);
+  --color-bubble-internal: var(--cs-bubble-internal);
+  --color-bubble-internal-foreground: var(--cs-bubble-internal-foreground);
+  --color-unread: var(--cs-signal);
+  --color-priority-high: var(--cs-warn);
+  --color-priority-urgent: var(--cs-late);
+  --color-status-open: var(--cs-signal-text);
+  --color-status-waiting: var(--cs-ink-3);
+  --radius-bubble: var(--cs-radius-bubble);
+  --radius-panel: 22px;
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* L4 Spatial · W1 Frost — 라이트 단일 테마. 차가운 앰비언트 위 반투명 화이트 유리 패널, 색은 '움직여야 하는 신호'에만. */
+:root {
+  color-scheme: light;
+
+  --background: oklch(95.5% 0.01 255);
+  --foreground: oklch(19% 0.014 265);
+  --card: oklch(99.4% 0.003 260);
+  --card-foreground: var(--foreground);
+  --popover: oklch(100% 0 0);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(19% 0.014 265);
+  --primary-foreground: oklch(99% 0 0);
+  --secondary: oklch(95% 0.006 260);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(20% 0.02 265 / 0.05);
+  --muted-foreground: oklch(44% 0.014 265);
+  --accent: oklch(20% 0.02 265 / 0.06);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(55% 0.2 25);
+  --border: oklch(20% 0.02 265 / 0.08);
+  --input: oklch(20% 0.02 265 / 0.13);
+  --ring: oklch(58% 0.2 266);
+  --chart-1: oklch(54% 0.2 266);
+  --chart-2: oklch(62% 0.12 200);
+  --chart-3: oklch(62% 0.13 155);
+  --chart-4: oklch(72% 0.15 70);
+  --chart-5: oklch(60% 0.2 25);
+  --radius: 0.75rem;
+  --sidebar: oklch(100% 0 0 / 0.62);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: oklch(54% 0.2 266);
+  --sidebar-primary-foreground: oklch(99% 0 0);
+  --sidebar-accent: oklch(20% 0.02 265 / 0.06);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: oklch(20% 0.02 265 / 0.08);
+  --sidebar-ring: oklch(58% 0.2 266);
+
+  --cs-panel: oklch(100% 0 0 / 0.62);
+  --cs-panel-2: oklch(97% 0.006 260 / 0.72);
+  --cs-panel-3: oklch(93% 0.01 260 / 0.78);
+  --cs-raised: oklch(100% 0 0 / 0.88);
+  --cs-ink-3: oklch(56% 0.012 265);
+  --cs-signal: oklch(54% 0.2 266);
+  --cs-signal-foreground: oklch(99% 0 0);
+  --cs-signal-soft: oklch(54% 0.2 266 / 0.1);
+  --cs-signal-text: oklch(46% 0.19 266);
+  --cs-warn: oklch(72% 0.15 70);
+  --cs-warn-text: oklch(50% 0.12 60);
+  --cs-late: oklch(60% 0.2 25);
+  --cs-late-text: oklch(51% 0.18 25);
+  --cs-ok: oklch(62% 0.13 155);
+  --cs-ok-text: oklch(45% 0.1 155);
+  /* 카카오 브랜드 버튼 (위젯 로그인 권유 — 쇼핑몰 로그인 화면의 카카오 시작하기로 이어짐) */
+  --cs-kakao: oklch(89% 0.17 98);
+  --cs-kakao-foreground: oklch(20% 0.02 80);
+  --cs-bubble-customer: oklch(19% 0.014 265);
+  --cs-bubble-customer-foreground: oklch(99% 0 0);
+  --cs-bubble-agent: oklch(100% 0 0 / 0.88);
+  --cs-bubble-agent-foreground: var(--foreground);
+  --cs-bubble-internal: oklch(96.5% 0.05 92);
+  --cs-bubble-internal-foreground: oklch(42% 0.07 80);
+  --cs-radius-bubble: 1rem;
+
+  --cs-edge: inset 0 1px 0 oklch(100% 0 0 / 0.9), 0 0 0 1px oklch(25% 0.03 265 / 0.06), 0 6px 20px -12px oklch(30% 0.05 265 / 0.2);
+  --cs-glow: 0 0 10px oklch(58% 0.2 266 / 0.45);
+  /* AI 응대 화면 전용 오로라 (보라 → signal → 청록). AI 가 만든 것·AI 공간에만 쓴다 */
+  --cs-ai-a: oklch(62% 0.2 300);
+  --cs-ai-b: oklch(70% 0.13 200);
+  --cs-ai-grad: linear-gradient(120deg, var(--cs-ai-a), var(--cs-signal) 45%, var(--cs-ai-b));
+  --cs-ai-glow: 0 0 14px oklch(62% 0.2 290 / 0.45);
+  --cs-float: 0 24px 50px -20px oklch(25% 0.03 265 / 0.3);
+  /* 콘솔 둘러보기 가이드: 대상 밖을 누르는 막 */
+  --cs-scrim: oklch(16% 0.03 265 / 0.6);
+}
+
+/* 유리 패널: 반투명 + blur + 상단 하이라이트 엣지 */
+@utility glass {
+  background-color: var(--cs-panel);
+  box-shadow: var(--cs-edge);
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+}
+@utility edge {
+  box-shadow: var(--cs-edge);
+}
+@utility float {
+  box-shadow: var(--cs-edge), var(--cs-float);
+}
+@utility glow {
+  box-shadow: var(--cs-glow);
+}
+@utility num {
+  font-family: var(--font-latin);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+@utility ai-grad {
+  background-image: var(--cs-ai-grad);
+}
+
+/* 배경 앰비언트 라이트 (텍스트에는 그라데이션 쓰지 않음) */
+@utility ambient {
+  position: relative;
+  isolation: isolate;
+  &::before,
+  &::after {
+    content: "";
+    position: fixed;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: 50%;
+  }
+  &::before {
+    inset: -20% 45% auto -15%;
+    height: 75%;
+    background: radial-gradient(closest-side, oklch(78% 0.12 266 / 0.55), transparent);
+  }
+  &::after {
+    inset: auto -15% -35% 55%;
+    height: 75%;
+    background: radial-gradient(closest-side, oklch(86% 0.09 200 / 0.6), transparent);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html,
+  body {
+    overflow-x: clip;
+  }
+  body {
+    @apply bg-background text-foreground;
+    letter-spacing: -0.01em;
+  }
+  html {
+    @apply font-sans;
+  }
+  ::selection {
+    background: oklch(58% 0.2 266 / 0.22);
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(20% 0.02 265 / 0.16);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* 고객 위젯 모션 —
+ * 화면 전환 L2(방향 있는 24px 슬라이드) · 첫 오픈 스태거 · AI 답변 단어별 블러 리빌(L3) · 첫 오픈 엣지 트레이스 1회(L4) */
+@property --widget-edge-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes widget-view-forward {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+@keyframes widget-view-back {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+}
+@keyframes widget-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@keyframes widget-word {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(2px);
+  }
+}
+@keyframes widget-typing {
+  0%,
+  60%,
+  100% {
+    opacity: 0.45;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+@keyframes widget-edge {
+  0% {
+    opacity: 0;
+    --widget-edge-angle: 0deg;
+  }
+  15%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    --widget-edge-angle: 360deg;
+  }
+}
+@utility widget-view-forward {
+  animation: widget-view-forward 220ms var(--ease-out) both;
+}
+@utility widget-view-back {
+  animation: widget-view-back 220ms var(--ease-out) both;
+}
+@utility widget-stagger {
+  & > * {
+    animation: widget-rise 260ms var(--ease-out) both;
+  }
+  & > :nth-child(2) { animation-delay: 40ms; }
+  & > :nth-child(3) { animation-delay: 80ms; }
+  & > :nth-child(4) { animation-delay: 120ms; }
+  & > :nth-child(5) { animation-delay: 160ms; }
+  & > :nth-child(6) { animation-delay: 200ms; }
+  & > :nth-child(7) { animation-delay: 240ms; }
+}
+@utility widget-word {
+  display: inline-block;
+  animation: widget-word 360ms var(--ease-out) both;
+}
+@utility widget-rise {
+  animation: widget-rise 260ms var(--ease-out) both;
+}
+/* 동영상 보낼 부분 고르기 시트: 아래에서 올라온다 */
+@keyframes widget-sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+}
+@utility widget-sheet-up {
+  animation: widget-sheet-up 420ms var(--ease-out) both;
+}
+@utility widget-typing-dot {
+  animation: widget-typing 1.1s ease-in-out infinite;
+}
+@utility widget-edge-trace {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  border-radius: 22px;
+  padding: 1.5px;
+  opacity: 0;
+  background: conic-gradient(
+    from var(--widget-edge-angle),
+    transparent 0 62%,
+    oklch(58% 0.2 266 / 0.85) 82%,
+    oklch(80% 0.1 220) 88%,
+    transparent 94%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  animation: widget-edge 1000ms cubic-bezier(0.65, 0, 0.35, 1) 200ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+    animation-delay: 0ms !important;
+  }
+}
+
+/* AI 응대 화면 = '다른 방': 앰비언트가 보라·청록으로 바뀌고,
+ * 패널 위 가는 오로라 선과 AI 답변 말풍선 테두리가 같은 색을 쓴다. 상담 화면에는 없다. */
+@keyframes ai-room-air {
+  from {
+    opacity: 0;
+  }
+}
+[data-room="ai"].ambient::before {
+  inset: -15% 30% auto -5%;
+  background: radial-gradient(closest-side, oklch(76% 0.15 300 / 0.5), transparent);
+  animation: ai-room-air 900ms var(--ease-out);
+}
+[data-room="ai"].ambient::after {
+  background: radial-gradient(closest-side, oklch(82% 0.12 195 / 0.62), transparent);
+  animation: ai-room-air 900ms var(--ease-out);
+}
+[data-room="ai"] .rounded-panel {
+  position: relative;
+}
+[data-room="ai"] .rounded-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 1;
+  height: 2px;
+  background: var(--cs-ai-grad);
+  opacity: 0.85;
+  pointer-events: none;
+}
+/* 상담원 화면에서 AI 답변은 '내 쪽'(어두운 말풍선)이라 바탕은 그대로 두고 테두리만 오로라 */
+[data-room="ai"] [data-ai-bubble] {
+  border: 1.5px solid transparent;
+  background:
+    linear-gradient(var(--cs-bubble-customer), var(--cs-bubble-customer)) padding-box,
+    var(--cs-ai-grad) border-box;
+  box-shadow: 0 8px 24px -14px oklch(55% 0.2 290 / 0.45);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-room="ai"].ambient::before,
+  [data-room="ai"].ambient::after {
+    animation: none;
+  }
+}
+
+/* 콘솔 둘러보기: 어두운 막에 대상 모양 구멍 + 시그널 링, 단계마다 0.5초 미끄러짐 */
+.tour-veil {
+  background: var(--cs-scrim);
+  transition: clip-path 500ms var(--ease-out);
+}
+.tour-move {
+  transition:
+    left 500ms var(--ease-out),
+    top 500ms var(--ease-out);
+}
+.tour-ring {
+  transition:
+    left 500ms var(--ease-out),
+    top 500ms var(--ease-out),
+    width 500ms var(--ease-out),
+    height 500ms var(--ease-out),
+    border-radius 500ms var(--ease-out);
+}
+.tour-ring::before,
+.tour-ring::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 2px var(--cs-signal);
+}
+.tour-ring::before {
+  box-shadow:
+    0 0 0 2px var(--cs-signal),
+    0 0 0 6px oklch(54% 0.2 266 / 0.18);
+}
+@keyframes tour-pulse {
+  from {
+    opacity: 0.7;
+    inset: 0;
+  }
+  to {
+    opacity: 0;
+    inset: -12px;
+  }
+}
+.tour-ring::after {
+  animation: tour-pulse 1.8s var(--ease-out) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tour-ring::after {
+    display: none;
+  }
+}

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>데모 쇼핑몰 (위젯 테스트)</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; margin: 0; padding: 40px 16px; background: #fafafa; color: #141414; }
+    main { max-width: 720px; margin: 0 auto; }
+    .card { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 24px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>데모 쇼핑몰</h1>
+    <div class="card">
+      <p>Cafe24 쇼핑몰 페이지를 흉내낸 로컬 테스트 페이지예요. 오른쪽 아래 버튼으로 채팅을 열어보세요.</p>
+      <p>실제 쇼핑몰에는 아래 한 줄만 넣으면 됩니다.</p>
+      <pre id="cstalk-snippet"></pre>
+      <script>
+        // 이 페이지를 연 서버 주소로 실제 설치 코드를 보여준다. 파일로 직접 열면(file://) 운영 주소를 쓴다.
+        var origin = /^https?:/.test(location.protocol) ? location.origin : "http://localhost:3000";
+        document.getElementById("cstalk-snippet").textContent =
+          '<script src="' + origin + '/widget.js" async></' + 'script>';
+      </script>
+    </div>
+  </main>
+  <script>window.CS_TALK_MEMBER_ID = "demo_member";</script>
+  <script>
+    // ?mode=test 로 열면 테스트 스킨용 위젯(미공개 기능 켜짐)을 띄운다
+    var w = document.createElement("script");
+    w.src = "/widget.js" + (new URLSearchParams(location.search).get("mode") === "test" ? "?mode=test" : "");
+    w.async = true;
+    document.body.appendChild(w);
+  </script>
+</body>
+</html>

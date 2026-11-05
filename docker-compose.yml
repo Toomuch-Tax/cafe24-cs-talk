@@ -1,0 +1,16 @@
+# 로컬 개발용 Postgres. `docker compose up -d` 후 `npm run setup`.
+# 내 컴퓨터의 5432 와 겹치지 않게 54329 포트를 쓴다 (.env.example 의 DATABASE_URL 과 같음).
+services:
+  db:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: cs_talk
+    ports:
+      - "54329:5432"
+    volumes:
+      - cs_talk_db:/var/lib/postgresql/data
+volumes:
+  cs_talk_db:
